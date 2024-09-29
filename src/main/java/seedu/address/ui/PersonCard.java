@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import javafx.fxml.FXML;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -14,6 +16,8 @@ import seedu.address.model.person.Person;
  */
 public class PersonCard extends UiPart<Region> {
 
+    @FXML
+    private Label remark;
     private static final String FXML = "PersonListCard.fxml";
 
     /**
@@ -55,5 +59,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        remark.setText(person.getRemark().value);
     }
 }
