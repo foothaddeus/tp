@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.student.Level;
 import seedu.address.model.student.Student;
 
 /**
@@ -61,7 +62,10 @@ public class StudentCard extends UiPart<Region> {
         emergencyContact.setText("Emergency Contact: " + student.getEmergencyContact().value);
         address.setText("Address: " + student.getAddress().value);
         note.setText("Note: " + student.getNote().value);
-        level.getChildren().add(new Label(student.getLevel().levelName));
+        String levelName = student.getLevel().levelName;
+        if (!levelName.equals("NONE NONE")) {
+            level.getChildren().add(new Label(student.getLevel().levelName));
+        }
         student.getSubjects().stream()
                 .sorted(Comparator.comparing(subject -> subject.subjectName))
                 .forEach(subject -> subjects.getChildren()
